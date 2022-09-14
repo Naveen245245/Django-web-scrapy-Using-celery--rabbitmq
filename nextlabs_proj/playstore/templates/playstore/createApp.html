@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block mainContent %}
+    <form action=""method="POST" style="padding:20px">
+
+        <table>
+            <thead>
+              <tr>
+                <td>Form Label</td>
+                <td>Form Input</td>
+              </tr>
+            </thead>
+            <tbody>
+                {{appForm.as_table}}
+            </tbody>
+          </table>
+        
+        {% csrf_token %}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock mainContent %}

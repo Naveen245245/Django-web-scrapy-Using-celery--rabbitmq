@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block mainContent %}
+    <div style="padding:20px">
+        <h3>User completed tasks</h3>
+        {% for task in tasks_completed %}
+            <h4>{{task.app}} - {{task.user}} - {{task.app.score}}</h4>
+        {% endfor %}
+        <hr>
+        <h3>User submitted tasks</h3>
+        {% for task in tasks_submitted %}
+            <h4>{{task.app}} - {{task.user}} - {{task.app.score}}</h4>
+        {% endfor %}
+        <hr>
+        <h3>User pending  tasks</h3>
+        {% for app in tasks_pending %}
+            <h4>{{app.app_name}} - {{app.score}} - {{app.category}}</h4>
+        {% endfor %}
+        <hr>
+    </div>
+
+    
+{% endblock mainContent %}

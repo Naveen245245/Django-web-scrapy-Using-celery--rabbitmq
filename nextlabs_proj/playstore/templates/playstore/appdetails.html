@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block mainContent %}
+<div>
+    <div style="padding: 20px">
+        <img src="{{app.logo}}" alt="App Logo"width="200" height="200">
+        <h2>{{app.app_name}}</h2> - <a href="">{{app.app_link}}</a> - <input type="button" value="Score-{{app.score}}">
+    </div>
+    <div>
+        <form action="../submit/{{app.id}}/" method="POST" class="dropzone dz"id="my-awesome-dropzone">
+           {% csrf_token %}
+            <input type="file" name="file" multiple />
+        </form>
+    </div>
+</div>
+    
+{% endblock mainContent %}

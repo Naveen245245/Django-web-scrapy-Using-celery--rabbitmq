@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block sideBarContent %}
+    <li><a href="{% url 'index' %}"><input type="button" value="Home" class="btn btn-primary"></a></li>
+    {% if request.user.is_authenticated %}
+        
+        {% if request.user.is_superuser %}
+            <li><a href="{% url 'create-app' %}"><input type="button" value="Add" class="btn btn-primary"></a></li>
+        {% endif %}
+        <li><a href=""><input type="button" value="Profile" class="btn btn-primary"></a></li>
+        <li><a href="{% url 'points' request.user.id %}"><input type="button" value="Points" class="btn btn-primary"></a></li>
+        <li><a href="{% url 'tasks' request.user.id %}"><input type="button" value="Tasks" class="btn btn-primary"></a></li>
+        <li><a href="{% url 'logout' %}"><input type="button" value="Logout" class="btn btn-primary"></a></li>
+    {% else %}
+    <li><a href=""><input type="button" value="Login" class="btn btn-primary"></a></li>
+    {% endif %}
+        
+{% endblock sideBarContent %}
+
+{% block mainContent %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <h3>Hi {{user}} - List of Apps</h3>
+    <hr>
+    <ul>
+    {% for app in apps %}
+    <div style="display:inline-block;background-color:#ADD8E6;">
+        <div><img src="{{app.logo}}" alt="AppImage"width="100" height="100"></div>
+        <div><h2>{{app.app_name}}</h2> <a href="{% url 'app-details' app.id %}">View Details</a>{{app.category}} - <input type="button" value="Score {{app.score}}"></div>
+    </div>
+    <hr>
+    {% endfor %}
+    </ul>
+    
+{% endblock mainContent %}
+
+  

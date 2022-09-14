@@ -1,0 +1,7 @@
+to start rabbit mq
+==================
+rabbitmq-plugins.bat enable rabbitmq_management
+
+to start celery mq
+==================
+celery -A nextlabs_proj worker -l info --pool=solo
